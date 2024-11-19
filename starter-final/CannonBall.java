@@ -1,18 +1,29 @@
-// WARNING: This file is auto-generated and any changes to it will be overwritten
-import lang.stride.*;
-import java.util.*;
-import greenfoot.*;
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-/**
- * 
- */
-public class CannonBall extends Actor
-{
+public class CannonBall extends Actor {
 
-    /**
-     * Act - do whatever the CannonBall wants to do. This method is called whenever the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void act()
-    {
+    private int speed;  // Speed of the cannonball
+
+    public CannonBall(int speed) {
+        this.speed = speed;  // Initialize the speed of the cannonball
+    }
+
+    public void act() {
+        move(speed);  // Move in the direction the cannonball is facing
+        checkCollision();  // Check for collisions with the Ladybug
+    }
+
+    private void checkCollision() {
+        // Check if the CannonBall is intersecting with a Ladybug
+        Ladybug ladybug = (Ladybug) getOneIntersectingObject(Ladybug.class);
+        
+        // If there's a collision with a Ladybug
+        if (ladybug != null) {
+            // Remove the Ladybug from the world
+            getWorld().removeObject(ladybug);
+            
+            // Optionally, remove the CannonBall after collision
+            getWorld().removeObject(this);
+        }
     }
 }

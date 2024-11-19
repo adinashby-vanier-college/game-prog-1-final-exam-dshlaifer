@@ -2,18 +2,63 @@
 <class name="Ladybug" extends="Actor" extends-java="Actor" enable="true" strideversion="1">
     <javadoc xml:space="preserve"/>
     <imports>
-        <import target="java.util.*" enable="true"/>
         <import target="greenfoot.*" enable="true"/>
     </imports>
     <implements/>
     <fields/>
     <constructors/>
     <methods>
+        <comment xml:space="preserve">(World, Actor, GreenfootImage, Greenfoot and MouseInfo)</comment>
         <method access="public" type="void" type-java="void" name="act" enable="true">
-            <javadoc xml:space="preserve">Act - do whatever the Hero wants to do. This method is called whenever the 'Act' or 'Run' button gets pressed in the environment.</javadoc>
+            <javadoc xml:space="preserve"/>
             <params/>
             <throws/>
-            <body/>
+            <body>
+                <comment xml:space="preserve">Handle movement with arrow keys</comment>
+                <if condition="Greenfoot . isKeyDown ( &quot;up&quot; )" condition-java="Greenfoot . isKeyDown ( &quot;up&quot; )" enable="true">
+                    <ifStatements>
+                        <call expression="setLocation ( getX ( ) , getY ( ) - 2 )" expression-java="setLocation ( getX ( ) , getY ( ) - 2 )" enable="true"/>
+                        <comment xml:space="preserve">Move up</comment>
+                    </ifStatements>
+                </if>
+                <if condition="Greenfoot . isKeyDown ( &quot;down&quot; )" condition-java="Greenfoot . isKeyDown ( &quot;down&quot; )" enable="true">
+                    <ifStatements>
+                        <call expression="setLocation ( getX ( ) , getY ( ) + 2 )" expression-java="setLocation ( getX ( ) , getY ( ) + 2 )" enable="true"/>
+                        <comment xml:space="preserve">Move down</comment>
+                    </ifStatements>
+                </if>
+                <if condition="Greenfoot . isKeyDown ( &quot;left&quot; )" condition-java="Greenfoot . isKeyDown ( &quot;left&quot; )" enable="true">
+                    <ifStatements>
+                        <call expression="setLocation ( getX ( ) - 2 , getY ( ) )" expression-java="setLocation ( getX ( ) - 2 , getY ( ) )" enable="true"/>
+                        <comment xml:space="preserve">Move left</comment>
+                    </ifStatements>
+                </if>
+                <if condition="Greenfoot . isKeyDown ( &quot;right&quot; )" condition-java="Greenfoot . isKeyDown ( &quot;right&quot; )" enable="true">
+                    <ifStatements>
+                        <call expression="setLocation ( getX ( ) + 2 , getY ( ) )" expression-java="setLocation ( getX ( ) + 2 , getY ( ) )" enable="true"/>
+                        <comment xml:space="preserve">Move right</comment>
+                    </ifStatements>
+                </if>
+                <call expression="checkCollision ( )" expression-java="checkCollision ( )" enable="true"/>
+                <comment xml:space="preserve">Check for collision with FinishLocation</comment>
+            </body>
+        </method>
+        <method access="private" type="void" type-java="void" name="checkCollision" enable="true">
+            <javadoc xml:space="preserve"/>
+            <params/>
+            <throws/>
+            <body>
+                <comment xml:space="preserve">Check if the Ladybug is intersecting with a FinishLocation</comment>
+                <variable type="FinishLocation" type-java="FinishLocation" name="finishLocation" value="( FinishLocation ) getOneIntersectingObject ( FinishLocation . class )" value-java="( FinishLocation ) getOneIntersectingObject ( FinishLocation . class )" enable="true"/>
+                <comment xml:space="preserve">If there's a collision with the FinishLocation</comment>
+                <if condition="finishLocation != null" condition-java="finishLocation != null" enable="true">
+                    <ifStatements>
+                        <comment xml:space="preserve">Remove the FinishLocation from the world</comment>
+                        <call expression="getWorld ( ) . removeObject ( finishLocation )" expression-java="getWorld ( ) . removeObject ( finishLocation )" enable="true"/>
+                        <comment xml:space="preserve">You can add additional code here if something else should happen when the FinishLocation is reached (e.g., victory message)</comment>
+                    </ifStatements>
+                </if>
+            </body>
         </method>
     </methods>
 </class>
