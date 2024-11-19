@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class name="Cannon" extends="Actor" extends-java="Actor" enable="true" strideversion="1">
+    <javadoc xml:space="preserve"/>
+    <imports>
+        <import target="greenfoot.*" enable="true"/>
+        <import target="java.util.Random" enable="true"/>
+    </imports>
+    <implements/>
+    <fields>
+        <comment xml:space="preserve">(World, Actor, GreenfootImage, Greenfoot and MouseInfo)</comment>
+        <variable access="private" type="int" type-java="int" name="reloadTime" enable="true"/>
+        <comment xml:space="preserve">Time between shots</comment>
+        <variable access="private" type="int" type-java="int" name="reloadCounter" enable="true"/>
+        <comment xml:space="preserve">Counter to track when to shoot</comment>
+        <variable access="private" type="Random" type-java="Random" name="random" enable="true"/>
+    </fields>
+    <constructors>
+        <comment xml:space="preserve">For generating random angles</comment>
+        <constructor access="public" enable="true">
+            <javadoc xml:space="preserve"/>
+            <params>
+                <params type="int" type-java="int" name="reloadTime"/>
+                <params type="int" type-java="int" name="speed"/>
+            </params>
+            <throws/>
+            <body>
+                <assign dest="this . reloadTime" dest-java="this . reloadTime" src="reloadTime" src-java="reloadTime" enable="true"/>
+                <assign dest="this . reloadCounter" dest-java="this . reloadCounter" src="reloadTime" src-java="reloadTime" enable="true"/>
+                <comment xml:space="preserve">Initialize counter to the reload time</comment>
+                <assign dest="random" dest-java="random" src="new Random ( )" src-java="new Random ( )" enable="true"/>
+                <comment xml:space="preserve">Initialize random number generator</comment>
+            </body>
+        </constructor>
+    </constructors>
+    <methods>
+        <method access="public" type="void" type-java="void" name="act" enable="true">
+            <javadoc xml:space="preserve"/>
+            <params/>
+            <throws/>
+            <body>
+                <comment xml:space="preserve">Decrease the counter each act cycle</comment>
+                <assign dest="reloadCounter" dest-java="reloadCounter" src="reloadCounter - 1" src-java="reloadCounter - 1" enable="true"/>
+                <comment xml:space="preserve">When counter reaches zero, shoot a cannonball</comment>
+                <if condition="reloadCounter &lt;= 0" condition-java="reloadCounter &lt;= 0" enable="true">
+                    <ifStatements>
+                        <call expression="shoot ( )" expression-java="shoot ( )" enable="true"/>
+                        <assign dest="reloadCounter" dest-java="reloadCounter" src="reloadTime" src-java="reloadTime" enable="true"/>
+                        <comment xml:space="preserve">Reset the counter for the next shot</comment>
+                    </ifStatements>
+                </if>
+            </body>
+        </method>
+        <method access="private" type="void" type-java="void" name="shoot" enable="true">
+            <javadoc xml:space="preserve"/>
+            <params/>
+            <throws/>
+            <body>
+                <comment xml:space="preserve">Create a new CannonBall with a very slow speed</comment>
+                <variable type="CannonBall" type-java="CannonBall" name="cannonBall" value="new CannonBall ( 1 )" value-java="new CannonBall ( 1 )" enable="true"/>
+                <comment xml:space="preserve">Speed set to 1 for very slow movement Add the CannonBall to the world at the Cannon's location</comment>
+                <call expression="getWorld ( ) . addObject ( cannonBall , getX ( ) , getY ( ) )" expression-java="getWorld ( ) . addObject ( cannonBall , getX ( ) , getY ( ) )" enable="true"/>
+                <comment xml:space="preserve">Randomly choose one of four directions: 0° (right), 90° (down), 180° (left), 270° (up)</comment>
+                <variable type="int[]" type-java="int[]" name="directions" value="{ 0 , 90 , 180 , 270 }" value-java="{ 0 , 90 , 180 , 270 }" enable="true"/>
+                <variable type="int" type-java="int" name="randomDirection" value="directions [ random . nextInt ( directions . length ) ]" value-java="directions [ random . nextInt ( directions . length ) ]" enable="true"/>
+                <comment xml:space="preserve">Set the rotation of the CannonBall to the chosen direction</comment>
+                <call expression="cannonBall . setRotation ( randomDirection )" expression-java="cannonBall . setRotation ( randomDirection )" enable="true"/>
+            </body>
+        </method>
+    </methods>
+</class>

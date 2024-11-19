@@ -1,13 +1,9 @@
 #BlueJ class context
 comment0.target=CannonBall
-comment0.text=\r\n\ \r\n
-comment1.params=
-comment1.target=CannonBall()
-comment1.text=\r\n\ \r\n
+comment1.params=speed
+comment1.target=CannonBall(int)
 comment2.params=
-comment2.target=void\ eatLadybug()
-comment2.text=\r\n\ \r\n
+comment2.target=void\ act()
 comment3.params=
-comment3.target=boolean\ isGameLost()
-comment3.text=\r\n\ \r\n
+comment3.target=void\ checkCollision()
 numComments=4

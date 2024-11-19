@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class name="MyWorld" extends="World" extends-java="World" enable="true" strideversion="1">
+    <javadoc xml:space="preserve"/>
+    <imports>
+        <import target="greenfoot.*" enable="true"/>
+    </imports>
+    <implements/>
+    <fields/>
+    <constructors>
+        <comment xml:space="preserve">(World, Actor, GreenfootImage, Greenfoot and MouseInfo)</comment>
+        <constructor access="public" enable="true">
+            <javadoc xml:space="preserve"/>
+            <params/>
+            <throws/>
+            <delegate target="super" params="800,400,1" params-java="800, 400, 1"/>
+            <body>
+                <comment xml:space="preserve">Create a new world with 600x400 cells, with a cell size of 1x1 pixels Prepare the world by adding initial objects</comment>
+                <call expression="prepare()" expression-java="prepare()" enable="true"/>
+            </body>
+        </constructor>
+    </constructors>
+    <methods>
+        <method access="private" type="void" type-java="void" name="prepare" enable="true">
+            <javadoc xml:space="preserve"/>
+            <params/>
+            <throws/>
+            <body>
+                <variable type="Cannon" type-java="Cannon" name="cannon1" value="new Cannon(100,1)" value-java=" new Cannon(100, 1)" enable="true"/>
+                <call expression="addObject(cannon1,126,115)" expression-java="addObject(cannon1, 126, 115)" enable="true"/>
+                <variable type="Cannon" type-java="Cannon" name="cannon2" value="new Cannon(150,1)" value-java=" new Cannon(150, 1)" enable="true"/>
+                <call expression="addObject(cannon2,413,25)" expression-java="addObject(cannon2, 413, 25)" enable="true"/>
+                <call expression="cannon2.setRotation(90)" expression-java="cannon2.setRotation(90)" enable="true"/>
+                <variable type="Cannon" type-java="Cannon" name="cannon3" value="new Cannon(100,1)" value-java=" new Cannon(100, 1)" enable="true"/>
+                <call expression="addObject(cannon3,556,175)" expression-java="addObject(cannon3, 556, 175)" enable="true"/>
+                <call expression="cannon3.setRotation(180)" expression-java="cannon3.setRotation(180)" enable="true"/>
+                <variable type="Cannon" type-java="Cannon" name="cannon4" value="new Cannon(200,1)" value-java=" new Cannon(200, 1)" enable="true"/>
+                <call expression="addObject(cannon4,208,240)" expression-java="addObject(cannon4, 208, 240)" enable="true"/>
+                <variable type="Cannon" type-java="Cannon" name="cannon5" value="new Cannon(120,1)" value-java=" new Cannon(120, 1)" enable="true"/>
+                <call expression="addObject(cannon5,544,337)" expression-java="addObject(cannon5, 544, 337)" enable="true"/>
+                <call expression="cannon5.setRotation(180)" expression-java="cannon5.setRotation(180)" enable="true"/>
+                <variable type="FinishLocation" type-java="FinishLocation" name="finishLocation" value="new FinishLocation()" value-java=" new FinishLocation()" enable="true"/>
+                <call expression="addObject(finishLocation,71,239)" expression-java="addObject(finishLocation, 71, 239)" enable="true"/>
+                <variable type="Ladybug" type-java="Ladybug" name="ladybug" value="new Ladybug()" value-java=" new Ladybug()" enable="true"/>
+                <call expression="addObject(ladybug,487,61)" expression-java="addObject(ladybug, 487, 61)" enable="true"/>
+                <call expression="ladybug.setLocation(659,83)" expression-java="ladybug.setLocation(659, 83)" enable="true"/>
+                <call expression="cannon3.setLocation(739,169)" expression-java="cannon3.setLocation(739, 169)" enable="true"/>
+                <call expression="cannon5.setLocation(597,329)" expression-java="cannon5.setLocation(597, 329)" enable="true"/>
+                <call expression="cannon2.setLocation(220,97)" expression-java="cannon2.setLocation(220, 97)" enable="true"/>
+                <call expression="cannon2.setLocation(581,17)" expression-java="cannon2.setLocation(581, 17)" enable="true"/>
+                <call expression="cannon2.setLocation(557,46)" expression-java="cannon2.setLocation(557, 46)" enable="true"/>
+            </body>
+        </method>
+    </methods>
+</class>

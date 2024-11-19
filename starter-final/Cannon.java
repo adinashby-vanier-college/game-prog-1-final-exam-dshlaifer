@@ -1,33 +1,45 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.Random;
 
 public class Cannon extends Actor {
-    private int fireInterval; // The time between each shot (in frames)
-    private int fireSpeed;    // Speed of the cannonball
-    private int lastFireTime; // Last frame when the cannon fired
-    
-    public Cannon(int fireInterval, int fireSpeed) {
-        this.fireInterval = fireInterval;
-        this.fireSpeed = fireSpeed;
-        this.lastFireTime = 0;
+    private int reloadTime;  // Time between shots
+    private int reloadCounter;  // Counter to track when to shoot
+    private Random random;  // For generating random angles
+
+    public Cannon(int reloadTime, int speed) {
+        this.reloadTime = reloadTime;
+        this.reloadCounter = reloadTime;  // Initialize counter to the reload time
+        random = new Random();  // Initialize random number generator
     }
 
     public void act() {
-        // Fire the cannon at regular intervals
-        if (Greenfoot.getTime() - lastFireTime >= fireInterval) {
-            fireCannonBall();
-            lastFireTime = Greenfoot.getTime();
+        // Decrease the counter each act cycle
+        reloadCounter--;
+
+        // When counter reaches zero, shoot a cannonball
+        if (reloadCounter <= 0) {
+            shoot();
+            reloadCounter = reloadTime;  // Reset the counter for the next shot
         }
     }
 
-    private void fireCannonBall() {
-        // Create a new Cannonball and set its speed
-        CannonBall cannonball = new CannonBall(fireSpeed);
-        getWorld().addObject(cannonball, getX(), getY());
+    private void shoot() {
+        // Create a new CannonBall with a very slow speed
+        CannonBall cannonBall = new CannonBall(1);  // Speed set to 1 for very slow movement
         
-        // Set the direction of the cannonball based on the cannon's rotation
-        cannonball.setRotation(getRotation());
+        // Add the CannonBall to the world at the Cannon's location
+        getWorld().addObject(cannonBall, getX(), getY());
+
+        // Randomly choose one of four directions: 0° (right), 90° (down), 180° (left), 270° (up)
+        int[] directions = {0, 90, 180, 270};
+        int randomDirection = directions[random.nextInt(directions.length)];
+        
+        // Set the rotation of the CannonBall to the chosen direction
+        cannonBall.setRotation(randomDirection);
     }
 }
+
+
 
 
 

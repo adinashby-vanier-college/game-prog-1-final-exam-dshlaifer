@@ -1,45 +1,29 @@
-// WARNING: This file is auto-generated and any changes to it will be overwritten
-import lang.stride.*;
-import java.util.*;
-import greenfoot.*;
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-/**
- * 
- */
-public class CannonBall extends Actor
-{
+public class CannonBall extends Actor {
 
-    /**
-     * 
-     */
-    public CannonBall()
-    {
-        eatLadybug();
+    private int speed;  // Speed of the cannonball
+
+    public CannonBall(int speed) {
+        this.speed = speed;  // Initialize the speed of the cannonball
     }
 
-    /**
-     * 
-     */
-    public void eatLadybug()
-    {
-        Actor Ladybug = getOneIntersectingObject(Ladybug.class);
-        if (Ladybug != null) {
-            World world = getWorld();
-            world.removeObject(Ladybug);
-        }
+    public void act() {
+        move(speed);  // Move in the direction the cannonball is facing
+        checkCollision();  // Check for collisions with the Ladybug
     }
 
-    /**
-     * 
-     */
-    public boolean isGameLost()
-    {
-        World world = getWorld();
-        if (world.getObjects(Ladybug.class).isEmpty()) {
-            return true;
-        }
-        else {
-            return false;
+    private void checkCollision() {
+        // Check if the CannonBall is intersecting with a Ladybug
+        Ladybug ladybug = (Ladybug) getOneIntersectingObject(Ladybug.class);
+        
+        // If there's a collision with a Ladybug
+        if (ladybug != null) {
+            // Remove the Ladybug from the world
+            getWorld().removeObject(ladybug);
+            
+            // Optionally, remove the CannonBall after collision
+            getWorld().removeObject(this);
         }
     }
 }
