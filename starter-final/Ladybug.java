@@ -14,5 +14,25 @@ public class Ladybug extends Actor
      */
     public void act()
     {
+        moveAndTurn();
+    }
+
+    /**
+     * 
+     */
+    public void moveAndTurn()
+    {
+        if (Greenfoot.isKeyDown("a")) {
+            move(3);
+        }
+        if (Greenfoot.isKeyDown("d")) {
+            move(-3);
+        }
+        if (Greenfoot.isKeyDown("w")) {
+            turn(3);
+        }
+        if (Greenfoot.isKeyDown("s")) {
+            turn(-3);
+        }
     }
 }
